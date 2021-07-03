@@ -95,6 +95,7 @@ public class MemberController {
 		String a;
 		String b;
 		Member[] temp = new Member[1];
+		//1 3 2 5
 		for (int i = 0; i < copy.length; i++) {
 			for (int j = 0; j < i; j++) {
 				a = copy[i].getUserId();
@@ -104,6 +105,7 @@ public class MemberController {
 					copy[i] = copy[j];
 					copy[j] = temp[0];
 				}
+				
 			}
 
 		}
