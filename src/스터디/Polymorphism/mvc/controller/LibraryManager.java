@@ -8,7 +8,6 @@ import 스터디.Polymorphism.mvc.model.vo.Member;
 public class LibraryManager {
 	private Member mem=null;
 	private Book[] bList = new Book[5];
-	
 	{ 
 		bList[0] = new CookBook("백종원의 집밥", "백종원", "tvN", true);
 		bList[1] = new AniBook("한번 더 해요", "미티", "원모어", 19);
