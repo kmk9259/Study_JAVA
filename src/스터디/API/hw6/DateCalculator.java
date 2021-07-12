@@ -4,73 +4,63 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class DateCalculator {
-	public long leapDate()
-	{
-		Calendar calendar = Calendar.getInstance();
-		int nowYear = calendar.get(GregorianCalendar.YEAR);
-		calendar.set(2021, 4, 20);
-		long day=1;
-		for(int i=1; i<nowYear; i++)
-		{
-			if(isLeapYear(i))
-				day+=366;
-			else
-				day+=365;
-		}
+	
+	public long leapDate() {
+		Calendar today=Calendar.getInstance();
+		int nowYear = today.get(Calendar.YEAR);
+		int nowMonth = today.get(Calendar.MONTH)+1;
+		int nowDay = today.get(Calendar.DATE);
+		long sumDays=0L;
 		
-		int month=1;
-		int year=1;
-		
-		while(year<=nowYear)
-		{
-			month++;
-			switch(month) {
-			case 1:
-			case 3:
-			case 5:
-			case 7:
-			case 8:
-			case 10:
-			case 12:
-				day+=31;
-				break;
-			case 4:
-			case 6:
-			case 9:
-			case 11:
-				day+=30;
-				break;
-			case 2:
-				if(year %4==0)
-				{
-					if(year%100!=0 || year%400==0)
-						day+=29;
-				}
+		for(int i=1; i<=nowYear; i++) 
+		{ 				
+			if(i==nowYear)
+			{ 							
+				if(isLeapYear(i)) 
+					System.out.println("올해는 윤년입니다.");
 				else 
-					day+=28;
-				break;
-			default:
-				month=1;
-				break;
+					System.out.println("올해는 평년입니다.");
+				for(int j=1; j<=nowMonth; j++)
+				{ 		
+					if(j==nowMonth) 
+					{				
+						for(int n=1;n<=nowDay;n++) 	// Date, 오늘이 되면
+						{
+							sumDays+=1;
+						}
+					}
+					else if(j==2) 
+					{
+						if(isLeapYear(i)) 
+							sumDays+=29;
+						else 
+							sumDays+=28;
+					}
+					else if(j==4||j==6||j==9||j==11) 
+					{
+						sumDays+=30;
+					}
+					else 
+						sumDays+=31;
+				}
 			}
-			break;
+			else 
+			{
+				if(isLeapYear(i)) 
+					sumDays+=366;
+				else 
+					sumDays+=365;	
+			}
 		}
-		return day;
-		
+		return sumDays;
 	}
-	public boolean isLeapYear(int year)
+	public boolean isLeapYear(int year) 
 	{
-		boolean b = true;
-		if(year %4==0)
-		{
-			if(year%100!=0 || year%400==0)
-				b=true;
-	
-		}
+		if(year%4==0 && year%100!=0 || year%400==0) 
+			return true;
 		else 
-			b = false;
-	
-		return b;
+			return false;
 	}
+	//GregorianCalendar()클래스에서 제공하는 isLeapYear() 메소드 써보기
 
 }
