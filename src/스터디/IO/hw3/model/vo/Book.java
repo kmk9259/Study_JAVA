@@ -5,6 +5,10 @@ import java.util.Calendar;
 
 public class Book implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1047918736911503609L;
 	private String title;
 	private String author;
 	private int price;
@@ -66,7 +70,8 @@ public class Book implements Serializable{
 
 	@Override
 	public String toString() {
-		return "title : "+title+", author : "+author+", price : "+price+", dates : "+dates+"출간 , discount : "+discount;
+		return "title : "+title+", author : "+author+", price : "+price+" "
+				+ dates.get(Calendar.YEAR)+"년 "+dates.get(Calendar.MONTH)+"월 "+dates.get(Calendar.DATE)+"일 "+"출간 , discount : "+discount;
 	}
 	
 }

@@ -7,8 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import 스터디.IO.hw3.model.vo.Book;
@@ -27,6 +27,7 @@ public class BookManager {
 		bk[3] = new Book("넛지", "서씨", 40000, setCalendar(2015, 5, 5), 0.4);
 		bk[4] = new Book("개미", "최씨", 50000, setCalendar(2016, 6, 6), 0.5);
 		
+	
 		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("books.dat"))){
 			for(int i=0; i<bk.length; i++)
 			{
@@ -43,18 +44,9 @@ public class BookManager {
 	}
 	public Calendar setCalendar(int year, int month, int date)
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
-		String str = Integer.toString(year)+"년"+Integer.toString(month)+"월"+Integer.toString(date)+"일";
-		System.out.println(str);
-		Calendar cal = Calendar.getInstance();
-//		try {
-//			Date d = sdf.parse(str);
-//			cal.setTime(d);
-//		}catch(ParseException e) {
-//			e.printStackTrace();
-//		}
-		//calendar 형으로 반환 모르겠음..
 		
+		Calendar cal = Calendar.getInstance();
+		cal.set(year, month, date);
 		return cal;
 	}
 	public void fileRead()
